@@ -71,6 +71,8 @@ app.use("/profile", profileRouter);
 app.use("/resume", resumeRouter);
 app.use("/database", databaseRouter);
 
+app.get('/', (req, res) => res.send('Server is running'))
+
 app.post("/login", function (req, res, next) {
   passport.authenticate("local", function (err, user, info) {
     if (err) {
