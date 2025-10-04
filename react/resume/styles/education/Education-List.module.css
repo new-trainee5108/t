@@ -1,0 +1,55 @@
+/* List */
+.list {
+  width: 50%;
+  display: flex;
+  justify-content: first baseline;
+  align-items: center;
+
+  border: 0.2px solid black;
+  border-radius: 0rem;
+  padding: 0.2rem;
+
+  background-color: white;
+  animation-duration: 500ms;
+  animation-timing-function: cubic-bezier(0.87, 0, 0.13, 1);
+  animation-name: slideUp;
+
+  font-weight: 100;
+  font-size: 1.3rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.listItem {
+  padding-left: 1rem;
+}
+
+/* Add Button */
+.addButton {
+  width: 50%;
+
+  display: flex;
+  justify-content: center;
+  animation-duration: 500ms;
+  animation-timing-function: cubic-bezier(0.87, 0, 0.13, 1);
+  animation-name: slideUp;
+}
+
+.addButton > button {
+  border: 2px black solid;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  background-color: white;
+  cursor: pointer;
+}

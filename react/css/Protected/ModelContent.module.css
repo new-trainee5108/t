@@ -1,0 +1,43 @@
+.modal {
+  width: 350px;
+  height: 250px;
+
+  position: relative;
+
+  top: -200px;
+  left: -150px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+
+  border: 0.5px solid blue;
+  border-radius: 2rem;
+  padding: 1rem;
+}
+
+.modal > div {
+  font-size: 2rem;
+}
+
+.modal > form > input {
+  width: 300px;
+  padding: 0.5rem;
+
+  font-size: 1.2rem;
+}
+
+.modal > section {
+  display: flex;
+  gap: 2rem;
+
+  margin-left: 8rem;
+}
+
+.modal > section > button {
+  border: 0.2px solid blue;
+  border-radius: 0rem;
+  padding: 10px;
+}

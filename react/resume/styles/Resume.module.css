@@ -1,0 +1,11 @@
+.root {
+  width: 100vw;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: space-evenly;
+
+  padding-top: 1.5rem;
+  overflow-y: visible;
+  background-color: rgb(243, 244, 246);
+}

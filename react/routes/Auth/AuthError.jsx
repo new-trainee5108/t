@@ -1,0 +1,3 @@
+export function AuthError() {
+  return <h1>Internal Server Error 500</h1>;
+}

@@ -1,0 +1,13 @@
+.index {
+  margin-top: 6rem;
+
+  text-wrap: nowrap;
+  font-size: 2rem;
+}
+
+.content {
+  width: 50%;
+  text-wrap: wrap;
+  font-size: 1.2rem;
+  margin: 4rem auto;
+}

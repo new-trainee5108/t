@@ -1,0 +1,17 @@
+.left {
+  width: 45%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.columnA {
+  width: fit-content;
+}
+
+.columnB {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  width: 75%;
+}

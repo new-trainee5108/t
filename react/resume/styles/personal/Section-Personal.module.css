@@ -1,0 +1,35 @@
+.personal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  border-radius: 0.5rem;
+  padding: 0.7rem;
+
+  background-color: white;
+}
+
+.personal > div:first-child {
+  font-size: 2rem;
+}
+
+.personalForm > section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  margin-bottom: 0.5rem;
+}
+
+.personalForm input {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.input {
+  border: none;
+  border-radius: 5px;
+
+  background-color: rgba(243, 244, 246);
+}

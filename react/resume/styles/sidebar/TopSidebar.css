@@ -1,0 +1,23 @@
+.top_sidebar {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+
+  background-color: white;
+}
+
+.top_sidebar > section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  flex: 1;
+
+  background-color: rgb(243, 244, 246);
+  cursor: pointer;
+}
