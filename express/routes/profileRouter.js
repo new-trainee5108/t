@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const passport = require("passport");
 const {
   POSTprofile,
   GETprofile,
@@ -16,6 +17,6 @@ profileRouter
   .put(PUTprofile)
   .delete(DELETEprofile);
 
-profileRouter.get("/personal/:id", GETPersonalprofile);
+profileRouter.get("/personal/:id",  GETPersonalprofile);
 
 module.exports = profileRouter;

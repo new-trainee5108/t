@@ -1,12 +1,13 @@
 const express = require("express");
 
 const passport = require("passport");
-const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
+
 
 const cors = require("cors");
 
 const pool = require("./db/pool");
+
 
 const profileRouter = require("./routes/profileRouter");
 const resumeRouter = require("./routes/resumeRouter");
@@ -19,15 +20,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(
-  session({
-    secret: "data",
-    resave: false,
-    saveUninitialized: false,
-  }),
-);
-
-app.use(passport.session());
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
@@ -71,7 +63,6 @@ app.use("/profile", profileRouter);
 app.use("/resume", resumeRouter);
 app.use("/database", databaseRouter);
 
-app.get('/', (req, res) => res.send('Server is running'))
 
 app.post("/login", function (req, res, next) {
   passport.authenticate("local", function (err, user, info) {
