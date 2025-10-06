@@ -1,9 +1,10 @@
 require('dotenv').config()
 
+const baseUrl = 'https://t-q8ve.onrender.com'
 const { MongoClient } = require("mongodb");
 const { Client } = require("pg");
 
-const uri = "mongodb+srv://everybillss_db_user:UMj0fbLB7ifyVL8C@cluster0.zi4s0jt.mongodb.net/users?retryWrites=true&w=majority&appName=Cluster0"
+const uri = process.env.MONGODB_URI
 const clientMongo = new MongoClient(uri);
 
 const clientPG = new Client({
@@ -43,7 +44,14 @@ async function dbPGConnect(req, res) {
   }
 }
 
-
+    async function dbMongo() {
+      const db = await fetch( 'https://t-q8ve.onrender.com/database/mongo').then(
+        (data) => data.json(),
+      );
+      if (db === 500) console.log("error");
+      else console.log("connected");
+    }
+    dbMongo();
 
   dbPGConnect()
 d()
