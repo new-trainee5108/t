@@ -63,7 +63,10 @@ app.use("/profile", profileRouter);
 app.use("/resume", resumeRouter);
 app.use("/database", databaseRouter);
 
-app.get('/' , (req, res) => res.send('Hello'))
+app.get('/' , (req, res) =>  {
+  const start = Date.now()
+  res.send(`Time now ${Date.now() - start}`)
+})
 
 
 app.post("/login", function (req, res, next) {
