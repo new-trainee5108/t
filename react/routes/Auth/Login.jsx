@@ -35,7 +35,7 @@ export function Login() {
       }
     }
     async function dbMongo() {
-      const db = await fetch("http://localhost:3000/database/mongo").then(
+      const db = await fetch(`${baseUrl}/database/mongo`).then(
         (data) => data.json(),
       );
       if (db === 500) setConnection("error");
