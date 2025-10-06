@@ -4,10 +4,12 @@ import "../../css/Protected/Profile.css";
 import { useState } from "react";
 import ModalContent from "./ModelContent.jsx";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 // eslint-disable-next-line react-refresh/only-export-components
 export async function loader({ params }) {
   const titleList = await fetch(
-    `http://localhost:3000/profile/${params.pid}`,
+    `${baseUrl}/profile/${params.pid}`,
   ).then((data) => data.json());
   localStorage.setItem("pid", params.pid);
   return { titleList, params };
@@ -19,12 +21,12 @@ export async function action({ request, params }) {
   const form = Object.fromEntries(formData);
 
   if (form.type === "logout") {
-    await fetch("http://localhost:3000/login", {
+    await fetch(`${baseUrl}/login`, {
       method: "POST",
     });
     return redirect("/logout");
   } else if (request.method === "POST") {
-    await fetch(`http://localhost:3000/profile/${params.pid}`, {
+    await fetch(`${baseUrl}/profile/${params.pid}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

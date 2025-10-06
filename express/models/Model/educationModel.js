@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const EducationSchema = require("../Schema/educationSchema");
 
 async function educationPOST(id) {
-  await mongoose.connect("mongodb://127.0.0.1:27017/users");
+  await mongoose.connect(process.env.MONGODB_URI);
   const document = await EducationSchema.create({
     degree: "untitled",
     resume_id: id,
@@ -12,7 +12,7 @@ async function educationPOST(id) {
 }
 
 async function educationGET(id) {
-  await mongoose.connect("mongodb://127.0.0.1:27017/users");
+  await mongoose.connect(process.env.MONGODB_URI);
   const document = await EducationSchema.find({
     resume_id: id,
   }).select("edu_id school degree dateStart dateEnd location -_id");
@@ -21,7 +21,7 @@ async function educationGET(id) {
 }
 
 async function educationPUT(id, data) {
-  await mongoose.connect("mongodb://127.0.0.1:27017/users");
+  await mongoose.connect(process.env.MONGODB_URI);
   const document = await EducationSchema.updateOne(
     { edu_id: data.id },
     {
@@ -41,7 +41,7 @@ async function educationPUT(id, data) {
 }
 
 async function educationDELETE(id, data) {
-  await mongoose.connect("mongodb://127.0.0.1:27017/users");
+  await mongoose.connect(process.env.MONGODB_URI);
   const document = await EducationSchema.deleteOne({ edu_id: data.id });
   await mongoose.disconnect();
   return document;

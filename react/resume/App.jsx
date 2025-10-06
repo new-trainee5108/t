@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Outlet, useLoaderData } from "react-router";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 // eslint-disable-next-line react-refresh/only-export-components
 export async function loader({ params }) {
   const personalData = await fetch(
-    `http://localhost:3000/profile/personal/${params.rid}`,
+    `${baseUrl}/profile/personal/${params.rid}`,
   ).then((data) => data.json());
   const educationData = await fetch(
-    `http://localhost:3000/resume/education/${params.rid}`,
+    `${baseUrl}/resume/education/${params.rid}`,
   ).then((data) => data.json());
   const experienceData = await fetch(
-    `http://localhost:3000/resume/experience/${params.rid}`,
+    `${baseUrl}/resume/experience/${params.rid}`,
   ).then((data) => data.json());
   localStorage.setItem("rid", params.rid);
   return { personalData, educationData, experienceData };
@@ -22,7 +24,7 @@ export async function action({ request, params }) {
     const formData = await request.formData();
     const form = Object.fromEntries(formData);
     const newDocument = await fetch(
-      `http://localhost:3000/resume/${form.resume}/${params.id}/`,
+      `${baseUrl}/resume/${form.resume}/${params.id}/`,
       {
         method: "POST",
         headers: {
@@ -36,7 +38,7 @@ export async function action({ request, params }) {
     const formData = await request.formData();
     const form = Object.fromEntries(formData);
     console.log(form);
-    await fetch(`http://localhost:3000/resume/${form.resume}/${params.id}/`, {
+    await fetch(`${baseUrl}/resume/${form.resume}/${params.id}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +48,7 @@ export async function action({ request, params }) {
   } else if (request.method === "DELETE") {
     const formData = await request.formData();
     const form = Object.fromEntries(formData);
-    await fetch(`http://localhost:3000/resume/${form.resume}/${params.id}/`, {
+    await fetch(`${baseUrl}/resume/${form.resume}/${params.id}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

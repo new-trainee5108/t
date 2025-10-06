@@ -11,7 +11,7 @@ const baseUrl = import.meta.env.VITE_API_URL;
 export async function action({ request }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  const response = await fetch(`${baseUrl}login`, {
+  const response = await fetch(`${baseUrl}/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

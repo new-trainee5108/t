@@ -1,15 +1,11 @@
 const { MongoClient } = require("mongodb");
 const { Client } = require("pg");
 
-const uri = "mongodb://127.0.0.1:27017/";
+const uri = process.env.MONGODB_URI
 const clientMongo = new MongoClient(uri);
 
 const clientPG = new Client({
-  host: "localhost",
-  user: "kumar97",
-  database: "top_users",
-  password: "",
-  port: 5432,
+  connectionString: process.env.DATABASE_URL
 });
 
 async function dbMongoConnect(req, res) {

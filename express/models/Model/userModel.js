@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const UserResume = require("../Schema/userSchema");
 
 async function profilePOST(user_id, title) {
-  await mongoose.connect("mongodb://127.0.0.1:27017/users");
+  await mongoose.connect(process.env.MONGODB_URI);
   const document = await UserResume.create({
     user_id: user_id,
     title: title,
@@ -12,7 +12,7 @@ async function profilePOST(user_id, title) {
 }
 
 async function profileGET(user_id) {
-  await mongoose.connect("mongodb://127.0.0.1:27017/users");
+  await mongoose.connect(process.env.MONGODB_URI);
   const document = await UserResume.find({
     user_id: user_id,
   });
@@ -21,7 +21,7 @@ async function profileGET(user_id) {
 }
 
 async function profilePersonalGET(user_id) {
-  await mongoose.connect("mongodb://127.0.0.1:27017/users");
+  await mongoose.connect(process.env.MONGODB_URI);
   const document = await UserResume.findById({
     _id: 1,
   });
@@ -30,7 +30,7 @@ async function profilePersonalGET(user_id) {
 }
 
 async function profilePUT(user_id, data) {
-  await mongoose.connect("mongodb://127.0.0.1:27017/users");
+  await mongoose.connect(process.env.MONGODB_URI);
   const document = await UserResume.updateOne(
     { user_id: user_id },
     {
@@ -48,7 +48,7 @@ async function profilePUT(user_id, data) {
 }
 
 async function profileDELETE(user_id) {
-  await mongoose.connect("mongodb://127.0.0.1:27017/users");
+  await mongoose.connect(process.env.MONGODB_URI);
   const document = await UserResume.deleteOne({ user_id: user_id });
   await mongoose.disconnect();
   return document;

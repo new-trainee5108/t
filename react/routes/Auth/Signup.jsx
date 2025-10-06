@@ -2,11 +2,13 @@ import styles from "../../css/Auth/Signup.module.css";
 import { Form, redirect, Link } from "react-router";
 import { BounceLoader } from "react-spinners";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 // eslint-disable-next-line react-refresh/only-export-components
 export async function action({ request }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  const response = await fetch("http://localhost:3000/signup", {
+  const response = await fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

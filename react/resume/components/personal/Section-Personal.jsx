@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import styles from "../../styles/personal/Section-Personal.module.css"
 import { Form } from "react-router";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 function SectionPersonal({ personalDetails, setPersonalDetails }) {
   function handleChange(e) {
     setPersonalDetails({
@@ -13,7 +15,7 @@ function SectionPersonal({ personalDetails, setPersonalDetails }) {
   useEffect(() => {
     return async () => {
       await fetch(
-        `http://localhost:3000/profile/${localStorage.getItem("pid")}`,
+        `${baseUrl}/profile/${localStorage.getItem("pid")}`,
         {
           method: "PUT",
           headers: {
