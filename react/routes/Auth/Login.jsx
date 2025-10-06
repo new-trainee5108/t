@@ -5,11 +5,13 @@ import { Form, Link, useActionData, Navigate } from "react-router";
 import { useState, useEffect } from "react";
 import { BounceLoader } from "react-spinners";
 
+const baseUrl = import.meta.env.VITE_API_URL;
+
 // eslint-disable-next-line react-refresh/only-export-components
 export async function action({ request }) {
   const formData = await request.formData();
   const updates = Object.fromEntries(formData);
-  const response = await fetch("http://localhost:3000/login", {
+  const response = await fetch(`${baseUrl}login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
