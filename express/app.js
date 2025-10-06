@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require("express");
 
 const passport = require("passport");
@@ -64,8 +66,7 @@ app.use("/resume", resumeRouter);
 app.use("/database", databaseRouter);
 
 app.get('/' , (req, res) =>  {
-  const start = Date.now()
-  res.send(`Time now ${Date.now() - start}`)
+  res.send(`Server is running`)
 })
 
 
@@ -104,4 +105,6 @@ app.post("/logout", function (req, res, next) {
   });
 });
 
-app.listen(3000, () => console.log("Server running"));
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => console.log("Server running"));
