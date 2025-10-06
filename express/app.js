@@ -63,6 +63,8 @@ app.use("/profile", profileRouter);
 app.use("/resume", resumeRouter);
 app.use("/database", databaseRouter);
 
+app.get('/' , (req, res) => res.send('Hello'))
+
 
 app.post("/login", function (req, res, next) {
   passport.authenticate("local", function (err, user, info) {
