@@ -22,9 +22,9 @@ async function dbMongoConnect(req, res) {
 async function dbPGConnect(req, res) {
   try {
     await clientPG.connect();
-    return res.status(200).json("OK");
+    return res.json(200);
   } catch (e) {
-    return res.status(500).json("Internal Server Error 500");
+    return res.json(500)
   } finally {
     await clientPG.end();
   }

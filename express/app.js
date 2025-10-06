@@ -22,7 +22,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
 passport.use(
   new LocalStrategy(async (username, password, done) => {
     try {
