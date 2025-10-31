@@ -18,45 +18,6 @@ export async function loader({ params }) {
   return { personalData, educationData, experienceData };
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
-export async function action({ request, params }) {
-  if (request.method === "POST") {
-    const formData = await request.formData();
-    const form = Object.fromEntries(formData);
-    const newDocument = await fetch(
-      `${baseUrl}/resume/${form.resume}/${params.id}/`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    ).then((data) => data.json());
-    if (form.resume === "education") return { edu_id: newDocument.id };
-    else return { exp_id: newDocument.id };
-  } else if (request.method === "PUT") {
-    const formData = await request.formData();
-    const form = Object.fromEntries(formData);
-    console.log(form);
-    await fetch(`${baseUrl}/resume/${form.resume}/${params.id}/`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    }).then((data) => data.json());
-  } else if (request.method === "DELETE") {
-    const formData = await request.formData();
-    const form = Object.fromEntries(formData);
-    await fetch(`${baseUrl}/resume/${form.resume}/${params.id}/`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(form),
-    });
-  }
-}
 
 export function App() {
   const LoaderData = useLoaderData();

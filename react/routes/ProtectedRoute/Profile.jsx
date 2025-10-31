@@ -3,6 +3,7 @@ import { createPortal } from "react-dom";
 import "../../css/Protected/Profile.css";
 import { useState } from "react";
 import ModalContent from "./ModelContent.jsx";
+import { Loading } from "../Loading.jsx";
 
 const baseUrl = import.meta.env.VITE_API_URL;
 
@@ -102,7 +103,7 @@ function ResumeList({ list }) {
 
   return (
     <ul role="grid" onClick={handleResumeRoute}>
-      <li>{list.title}</li>
+      <li className="pointer">{list.title}</li>
       <li> {list.createdAt} </li>
       <li className="action">
         <span>

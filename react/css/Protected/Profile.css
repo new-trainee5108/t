@@ -79,6 +79,14 @@ ul[role="grid"] {
   }
 }
 
+.pointer {
+  cursor: pointer;
+}
+
+.pointer:hover {
+  outline: 2px solid orange;
+}
+
 .action {
   display: flex;
   gap: 2rem;

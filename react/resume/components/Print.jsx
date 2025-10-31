@@ -11,13 +11,13 @@ export function Print() {
 
         <section>
           <ul>
-            <li>{context.personalDetails.name}</li>
+            <li>{context.personalDetails.email}</li>
             {context.personalDetails.email &&
               context.personalDetails.number && <li>|</li>}
-            <li>{context.personalDetails.name}</li>
+            <li>{context.personalDetails.number}</li>
             {context.personalDetails.email &&
               context.personalDetails.address && <li>|</li>}
-            <li>{context.personalDetails.name}</li>
+            <li>{context.personalDetails.address}</li>
           </ul>
         </section>
       </div>

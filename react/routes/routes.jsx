@@ -17,9 +17,8 @@ import { Logout } from "./Auth/Logout";
 import {
   App as ResumeApp,
   loader as ResumeLoader,
-  action as ResumeAction,
 } from "../resume/App";
-import { Resume } from "../resume/components/Resume";
+import { Resume, action as ResumeAction} from "../resume/components/Resume";
 import { Print } from "../resume/components/Print";
 import { Loading } from "../routes/Loading";
 
@@ -59,9 +58,8 @@ let router = createBrowserRouter([
         Component: ResumeApp,
         hydrateFallbackElement: <Loading />,
         loader: ResumeLoader,
-        action: ResumeAction,
         children: [
-          { index: true, Component: Resume },
+          { index: true, Component: Resume, action: ResumeAction, hydrateFallbackElement: <Loading />},
           { path: "print", Component: Print },
         ],
       },
