@@ -1,5 +1,8 @@
+import { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
 import styles from "../../css/Auth/Signup.module.css";
-import { Form, redirect, Link } from "react-router";
+import { Form, Link, useActionData, Navigate } from "react-router";
+import { useState, useEffect } from "react";
 import { BounceLoader } from "react-spinners";
 
 const baseUrl = import.meta.env.VITE_API_URL;
@@ -14,13 +17,37 @@ export async function action({ request }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(updates),
-  }).then((data) => data);
-  if (response.status === 404) throw new Error("sERVER ERROR");
+  }).then((data) => data.json());
+  if (response.status === 404) throw new Error("Server ERROR");
 
-  return redirect("/");
+  localStorage.setItem("username", response.username);
+  return response;
 }
 
 export function Signup() {
+  const data = useActionData();
+  const { setAuth } = useContext(AuthContext);
+
+  const [connection, setConnection] = useState("pending");
+
+  useEffect(() => {
+    if (data !== undefined) {
+      if (data.message === "Success") {
+        setAuth(true);
+      }
+    }
+    async function dbMongo() {
+      const db = await fetch(`${baseUrl}/database/mongo`).then(
+        (data) => data.json(),
+      );
+      if (db === 500) setConnection("error");
+      else setConnection("connected");
+    }
+    dbMongo();
+  }, [data, setAuth]);
+
+  if (connection === "error") throw new Error();
+
   return (
     <div className={styles.signup}>
       <div>
@@ -40,6 +67,18 @@ export function Signup() {
         </section>
         <button type="submit">Sign up</button>
       </Form>
+
+      <div>
+        {data && data.message === "Success" && (
+          <BounceLoader size={60} color="#403eb6" />
+        )}
+      </div>
+
+      <div hidden>
+        {data && data.message === "Success" && connection === "connected" && (
+          <Navigate to={`/profile/${data.user_id}`} />
+        )}
+      </div>
     </div>
   );
 }

@@ -85,12 +85,15 @@ app.post("/login", function (req, res, next) {
 app.post("/signup", async (req, res) => {
   const { username, password } = req.body;
   try {
-    await pool.query("INSERT INTO user(username, password) VALUES ($1, $2)", [
+    const { rows } = await pool.query("INSERT INTO users(username, password) VALUES ($1, $2) RETURNING user_id", [
       username,
       password,
     ]);
-    res.status(200).json({ res: "OK" });
-  } catch (e) {
+    const message = "Success"
+    const user_id = rows[0].user_id
+    res.json({ message, user_id, username });
+  }
+   catch (e) {
     res.status(404).json({ res: 404 });
   }
 });
